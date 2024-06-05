@@ -1,0 +1,16 @@
+{
+  "namespace": "me.amiralles.fruits.schema",
+  "type": "record",
+  "name": "FruitCreated",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "long"],
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+global:
+  scrape_interval: 10s
+  external_labels:
+    system: quarkus-super-heroes
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: apicurio
+    honor_labels: true
+    static_configs:
+      - targets: ['apicurio:8086']
+        labels:
+          app: apicurio
+          application: apicurio
+          system: quarkus-fruits
+
+  - job_name: fruits-api
+    metrics_path: /q/metrics
+    honor_labels: true
+    static_configs:
+      - targets: ['localhost:8081']
+        labels:
+          app: quarkus-fruits-api
+          application: quarkus-fruits-api
+          system: quarkus-fruits
+
+  - job_name: fruits-data
+    metrics_path: /q/metrics
+    honor_labels: true
+    static_configs:
+      - targets: ['localhost:8080']
+        labels:
+          app: quarkus-fruits-data
+          application: quarkus-fruits-data
+          system: quarkus-fruits

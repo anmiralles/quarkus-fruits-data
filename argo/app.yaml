@@ -1,0 +1,20 @@
+dataVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-fruits-data
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: fruits
+    server: https://kubernetes.default.svc
+  project: fruits
+  source:
+    chart: fruits-data
+    repoURL: https://anmiralles.github.io/helm-charts/
+    targetRevision: 1.0.0
+    helm:
+      releaseName: fruits-data
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
